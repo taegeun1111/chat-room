@@ -12,8 +12,14 @@ export interface ResponseData {
 
 export interface ChatData {
   user_id: number;
+  user_name: string;
   create_at: Date;
   id: number;
   msg: string;
   photo_url?: string;
+}
+
+export interface WriterData {
+  user_name: string;
+  photo_url: string;
 }
