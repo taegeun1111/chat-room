@@ -1,7 +1,13 @@
 import React from 'react';
+import {Outlet} from 'react-router-dom';
+import Layout from './components/Layout/Layout';
 
 function App() {
-  return <div className='App'>APP</div>;
+  return (
+    <Layout>
+      <Outlet />
+    </Layout>
+  );
 }
 
 export default App;
