@@ -1,0 +1,13 @@
+#error {
+  @include flex-basic;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+
+  .error-back {
+    margin-top: 10px;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}

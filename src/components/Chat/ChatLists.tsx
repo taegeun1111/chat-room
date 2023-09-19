@@ -1,6 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {ChatData} from '../../types/chat';
 import Modal from './Modal';
+import {REPLY, SEND} from '../../constants/constants';
 
 interface Props {
   messagesList: ChatData[];
@@ -39,7 +40,7 @@ const ChatLists = ({messagesList, formatTime, formatText, formatDate}: Props) =>
               <div className='date-wrapper'>{formatDate(message.create_at)}</div>
             )}
 
-            {message.user_id === 1 && (
+            {message.user_id === SEND && (
               <div className='sender-wrapper'>
                 <div className='sender-time'>{formatTime(message.create_at)}</div>
                 <div className='sender-msg'>
@@ -53,7 +54,7 @@ const ChatLists = ({messagesList, formatTime, formatText, formatDate}: Props) =>
               </div>
             )}
 
-            {message.user_id === 2 && (
+            {message.user_id === REPLY && (
               <div className='reply-wrapper'>
                 <section className={'reply-info'}>
                   <img

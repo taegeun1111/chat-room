@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 import {fetchData} from '../apis';
 import {ResponseData, ChatData, replyData} from '../types/chat';
+import {REPLY, SEND} from '../constants/constants';
 
 const useChatData = () => {
   const [messagesList, setMessagesList] = useState<ChatData[]>([]);
@@ -33,14 +34,14 @@ const useChatData = () => {
             photo_url: result.photo_url,
           });
 
-        if (result.user_id === 2) {
+        if (result.user_id === REPLY) {
           if (result.user_name !== currentWriterInfo.user_name) {
             currentWriterInfo = {
               user_name: result.user_name,
               photo_url: result.photo_url,
             };
           }
-        } else if (result.user_id === 1) {
+        } else if (result.user_id === SEND) {
           if (result.user_name !== currentWriterInfo.user_name) {
             setWriterName(result.user_name);
           }
@@ -48,6 +49,7 @@ const useChatData = () => {
           alert('작성자 이름 또는 수신 에러가 발생했습니다.');
         }
       });
+    console.log(messages);
     setMessagesList(sortData(messages));
     setReplyInfo(currentWriterInfo);
   };
@@ -69,7 +71,7 @@ const useChatData = () => {
     );
 
     const newChat = {
-      user_id: 1,
+      user_id: SEND,
       user_name: writerName,
       create_at: formattedDate,
       id: lastId + 1,
