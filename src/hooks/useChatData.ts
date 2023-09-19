@@ -25,7 +25,7 @@ const useChatData = () => {
         messages.push({
           user_id: result.user_id,
           user_name: result.user_name,
-          create_at: new Date(result.created_at),
+          create_at: result.created_at,
           id: result.id,
           msg: result.msg.content,
           photo_url: result.photo_url,
@@ -50,15 +50,29 @@ const useChatData = () => {
       if (a.create_at === b.create_at) {
         return a.id - b.id;
       }
-      return a.create_at.getTime() - b.create_at.getTime();
+      return new Date(a.create_at).getTime() - new Date(b.create_at).getTime();
     });
+  };
+
+  const formatTime = (timeString: string) => {
+    const date = new Date(timeString);
+
+    let hours = date.getHours();
+    const minutes = date.getMinutes();
+
+    const distinguishHour = hours < 12 ? '오전' : '오후';
+
+    if (hours > 12) hours -= 12;
+
+    const formattedTime = `${distinguishHour} ${hours}:${minutes < 10 ? '0' : ''}${minutes}`;
+    return formattedTime;
   };
 
   useEffect(() => {
     getChat();
   }, []);
 
-  return {messagesList, writerInfo};
+  return {messagesList, writerInfo, formatTime};
 };
 
 export default useChatData;
