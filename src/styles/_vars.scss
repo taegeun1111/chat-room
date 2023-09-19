@@ -1,0 +1,28 @@
+:root {
+  --mainEng-font: "Montserrat";
+  --mainKor-font: "nanumSquareNeo";
+
+  --bg-chat: #FAF0E1;
+  --bg-header: #FFF9EF;
+
+  --sender: #03006E;
+  --recipient:  #fff;
+  --subBg-date: #C1C1C6;
+
+  --white: #fff;
+  --black: #000;
+
+  font-family: var(--mainEng-font), var(--mainKor-font);
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+
+  @media (max-width: 800px) {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+}
+
+body {
+  background-color: var(--white);
+}
