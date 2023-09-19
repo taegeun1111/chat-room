@@ -20,7 +20,7 @@ const useInputWithDebounce = () => {
     };
   }, [inputValue]);
 
-  return {inputValue, debouncedValue, setInputValue, setDebouncedValue, validCheck};
+  return {inputValue, debouncedValue, setInputValue, setDebouncedValue, validCheck, setValidCheck};
 };
 
 export default useInputWithDebounce;

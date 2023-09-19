@@ -48,14 +48,12 @@ const useChatData = () => {
           alert('작성자 이름 또는 수신 에러가 발생했습니다.');
         }
       });
-
     setMessagesList(sortData(messages));
     setReplyInfo(currentWriterInfo);
   };
 
   const addChat = (debouncedValue: string) => {
     const date = new Date();
-
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1 필요
     const day = String(date.getDate()).padStart(2, '0');
@@ -70,17 +68,14 @@ const useChatData = () => {
       0
     );
 
-    console.log(writerName);
-
     const newChat = {
       user_id: 1,
-      user_name: '소개녀',
+      user_name: writerName,
       create_at: formattedDate,
       id: lastId + 1,
       msg: debouncedValue,
     };
     const updatedMessagesList = [...messagesList, newChat];
-    console.log(updatedMessagesList);
     setMessagesList(updatedMessagesList);
   };
 

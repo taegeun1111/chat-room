@@ -1,29 +1,39 @@
-import React, {ChangeEvent, useEffect, useState} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import useInputWithDebounce from '../../hooks/useInputWithDebounce';
-import {ChatData} from '../../types/chat';
 
 interface Props {
   addChat: (debouncedValue: string) => void;
 }
 
 const InputMessage = ({addChat}: Props) => {
-  const {inputValue, setInputValue, debouncedValue, validCheck} = useInputWithDebounce();
+  const {inputValue, setInputValue, debouncedValue, validCheck, setValidCheck} =
+    useInputWithDebounce();
+  // const [clickFlag, setClickFlag] = useState(true);
+
   const inputChatHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
 
   const sendChatHandler = () => {
     if (validCheck) {
+      setValidCheck(false);
       addChat(debouncedValue);
       setInputValue('');
+      setTimeout(() => {
+        setValidCheck(true);
+      }, 1000);
     }
   };
 
   const pressEnterHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && validCheck) {
+      setValidCheck(false);
       addChat(debouncedValue);
       setInputValue('');
+      setTimeout(() => {
+        setValidCheck(true);
+      }, 1000);
     }
   };
 
