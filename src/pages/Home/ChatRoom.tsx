@@ -5,12 +5,17 @@ import InputMessage from '../../components/Input/InputMessage';
 import ChatLists from '../../components/Chat/ChatLists';
 
 const ChatRoom = () => {
-  const {writerInfo, messagesList, formatTime, formatText} = useChatData();
+  const {writerInfo, messagesList, formatTime, formatText, formatDate} = useChatData();
 
   return (
     <div id='chat-room'>
       <Header replyInfo={writerInfo} />
-      <ChatLists messagesList={messagesList} formatTime={formatTime} formatText={formatText} />
+      <ChatLists
+        messagesList={messagesList}
+        formatTime={formatTime}
+        formatText={formatText}
+        formatDate={formatDate}
+      />
       <InputMessage />
     </div>
   );

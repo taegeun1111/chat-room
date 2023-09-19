@@ -4,14 +4,21 @@ import {ChatData} from '../../types/chat';
 interface Props {
   messagesList: ChatData[];
   formatTime: (timeString: string) => string;
+  formatDate: (timeString: string) => string;
   formatText: (msg: string) => string[];
 }
 
-const ChatLists = ({messagesList, formatTime, formatText}: Props) => {
+const ChatLists = ({messagesList, formatTime, formatText, formatDate}: Props) => {
   return (
     <ul id='chat-lists'>
-      {messagesList.map(message => (
+      {messagesList.map((message, index) => (
         <li key={message.id}>
+          {(index === 0 ||
+            message.create_at.split(' ')[0] !==
+              messagesList[index - 1].create_at.split(' ')[0]) && (
+            <div className='date-wrapper'>{formatDate(message.create_at)}</div>
+          )}
+
           {message.user_id === 1 && (
             <div className='sender-wrapper'>
               <div className='sender-time'>{formatTime(message.create_at)}</div>
