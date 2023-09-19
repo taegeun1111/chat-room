@@ -39,8 +39,7 @@
     flex-direction: column;
 
     .reply-info {
-      display: flex;
-      align-items: center;
+      @include flex-basic;
 
       .reply-img {
         width: 25px;

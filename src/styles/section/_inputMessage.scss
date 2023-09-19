@@ -1,15 +1,12 @@
 #input {
+  @include flex-between;
   width: 100%;
   background-color: var(--bg-header);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   padding: 15px 20px;
   height: 65px;
 
   .plus-btn {
-    display: flex;
-    align-items: center;
+    @include flex-basic;
     justify-content: center;
     width: 28px;
     height: 28px;
@@ -23,9 +20,7 @@
   }
 
   .input-text-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    @include flex-between;
     width: 88%;
     padding: 5px 10px 5px 15px;
     background-color: var(--white);
