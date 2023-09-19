@@ -1,0 +1,49 @@
+#input {
+  width: 100%;
+  background-color: var(--bg-header);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px;
+
+  .plus-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    color: var(--subBg-date);
+    background: none;
+    border: var(--subBg-date) solid 1px;
+    border-radius: 30px;
+    font-size: 30px;
+    font-weight: 200;
+    cursor: pointer;
+  }
+
+  .input-text-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 88%;
+    padding: 5px 10px 5px 15px;
+    background-color: var(--white);
+    border-radius: 30px;
+
+    .input-text {
+      width: 85%;
+      font-size: 15px;
+      border: none;
+      outline: none;
+    }
+
+    .input-arrow {
+      background-color: var(--sender);
+      border-radius: 50%;
+      color: var(--white);
+      font-size: 25px;
+      padding: 5px;
+      cursor: pointer;
+    }
+  }
+}
