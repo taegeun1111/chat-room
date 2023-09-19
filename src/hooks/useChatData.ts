@@ -1,7 +1,6 @@
 import {useEffect, useState} from 'react';
 import {fetchData} from '../apis';
 import {ResponseData, ChatData, replyData} from '../types/chat';
-import {set} from 'husky';
 
 const useChatData = () => {
   const [messagesList, setMessagesList] = useState<ChatData[]>([]);
@@ -41,8 +40,6 @@ const useChatData = () => {
             };
           }
         }
-
-        console.log(messages);
       });
 
     setMessagesList(sortData(messages));

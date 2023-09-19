@@ -33,18 +33,25 @@
 
     .input-text {
       width: 85%;
-      font-size: 15px;
+      font-size: 14px;
       border: none;
       outline: none;
     }
 
-    .input-arrow {
-      background-color: var(--sender);
+    .active-input-arrow,
+    .inactive-input-arrow {
       border-radius: 50%;
       color: var(--white);
       font-size: 25px;
       padding: 5px;
+    }
+
+    .active-input-arrow {
+      background-color: var(--sender);
       cursor: pointer;
+    }
+    .inactive-input-arrow {
+      background-color: var(--arrow);
     }
   }
 }
