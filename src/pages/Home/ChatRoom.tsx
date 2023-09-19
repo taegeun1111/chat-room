@@ -1,11 +1,8 @@
 import React, {useEffect} from 'react';
-import {fetchData} from '../../apis';
+import useChatData from '../../hooks/useChatData';
 
 const ChatRoom = () => {
-  useEffect(() => {
-    fetchData();
-  });
-
+  useChatData();
   return <div id='chat-room'>mainpage</div>;
 };
 
