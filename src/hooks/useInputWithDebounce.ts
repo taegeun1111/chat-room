@@ -15,7 +15,6 @@ const useInputWithDebounce = () => {
         setValidCheck(false);
       }
     }, 400);
-    console.log(inputValue);
     return () => {
       clearTimeout(inputSearch);
     };

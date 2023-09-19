@@ -8,6 +8,7 @@ const useChatData = () => {
     user_name: '',
     photo_url: '',
   });
+  const [writerName, setWriterName] = useState('');
 
   const getChat = async () => {
     const data: ResponseData[] = await fetchData();
@@ -39,11 +40,48 @@ const useChatData = () => {
               photo_url: result.photo_url,
             };
           }
+        } else if (result.user_id === 1) {
+          if (result.user_name !== currentWriterInfo.user_name) {
+            setWriterName(result.user_name);
+          }
+        } else {
+          alert('작성자 이름 또는 수신 에러가 발생했습니다.');
         }
       });
 
     setMessagesList(sortData(messages));
     setReplyInfo(currentWriterInfo);
+  };
+
+  const addChat = (debouncedValue: string) => {
+    const date = new Date();
+
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1 필요
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
+
+    const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+
+    const lastId = messagesList.reduce(
+      (maxId: number, message) => (message.id > maxId ? message.id : maxId),
+      0
+    );
+
+    console.log(writerName);
+
+    const newChat = {
+      user_id: 1,
+      user_name: '소개녀',
+      create_at: formattedDate,
+      id: lastId + 1,
+      msg: debouncedValue,
+    };
+    const updatedMessagesList = [...messagesList, newChat];
+    console.log(updatedMessagesList);
+    setMessagesList(updatedMessagesList);
   };
 
   const sortData = (messages: ChatData[]) => {
@@ -86,7 +124,15 @@ const useChatData = () => {
     getChat();
   }, []);
 
-  return {messagesList, writerInfo: replyInfo, formatTime, formatText, formatDate};
+  return {
+    messagesList,
+    writerInfo: replyInfo,
+    formatTime,
+    formatText,
+    formatDate,
+    setMessagesList,
+    addChat,
+  };
 };
 
 export default useChatData;

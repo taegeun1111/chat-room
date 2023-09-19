@@ -5,8 +5,7 @@ import InputMessage from '../../components/Input/InputMessage';
 import ChatLists from '../../components/Chat/ChatLists';
 
 const ChatRoom = () => {
-  const {writerInfo, messagesList, formatTime, formatText, formatDate} = useChatData();
-
+  const {writerInfo, messagesList, formatTime, formatText, formatDate, addChat} = useChatData();
   return (
     <div id='chat-room'>
       <Header replyInfo={writerInfo} />
@@ -16,7 +15,7 @@ const ChatRoom = () => {
         formatText={formatText}
         formatDate={formatDate}
       />
-      <InputMessage />
+      <InputMessage addChat={addChat} />
     </div>
   );
 };
