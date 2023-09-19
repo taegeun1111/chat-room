@@ -67,11 +67,16 @@ const useChatData = () => {
     return `${distinguishHour} ${hours}:${minutes < 10 ? '0' : ''}${minutes}`;
   };
 
+  const formatText = (msg: string) => {
+    const text = msg.split('\\n');
+    return text;
+  };
+
   useEffect(() => {
     getChat();
   }, []);
 
-  return {messagesList, writerInfo: replyInfo, formatTime};
+  return {messagesList, writerInfo: replyInfo, formatTime, formatText};
 };
 
 export default useChatData;
