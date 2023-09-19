@@ -9,7 +9,7 @@ const ChatRoom = () => {
 
   return (
     <div id='chat-room'>
-      <Header writerInfo={writerInfo} />
+      <Header replyInfo={writerInfo} />
       <ChatLists messagesList={messagesList} formatTime={formatTime} />
       <InputMessage />
     </div>

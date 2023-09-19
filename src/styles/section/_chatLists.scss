@@ -1,6 +1,80 @@
 #chat-lists {
-  padding: 0 20px;
+  padding: 20px;
   height: 605px;
   max-height: 605px;
   overflow: auto;
+  font-size: 13px;
+
+  //보낸 메세지
+  .sender-wrapper {
+    justify-content: flex-end;
+    align-items: end;
+
+    .sender-msg {
+      background-color: var(--sender);
+      color: var(--white);
+      box-shadow: 1px 1px 3px 1px rgba(100, 100, 100, 0.1);
+    }
+
+    .sender-time {
+      margin-right: 5px;
+    }
+  }
+
+  //받은 메세지
+  .reply-wrapper {
+    justify-content: flex-start;
+    flex-direction: column;
+
+    .reply-info {
+      display: flex;
+      align-items: center;
+
+      .reply-img {
+        width: 25px;
+        border-radius: 5px;
+      }
+
+      .reply-user-name {
+        padding-left: 5px;
+      }
+    }
+
+    .reply-text {
+      display: flex;
+      align-items: end;
+
+      .reply-msg {
+        margin-left: 30px;
+        background-color: var(--white);
+        box-shadow: 1px 1px 3px 1px rgba(100, 100, 100, 0.1);
+        border-top-left-radius: 0;
+      }
+
+      .reply-time {
+        margin-left: 5px;
+      }
+    }
+  }
+
+  //공통영역
+  .sender-wrapper,
+  .reply-wrapper {
+    display: flex;
+    margin-bottom: 12px;
+  }
+
+  .sender-msg,
+  .reply-msg {
+    border-radius: 12px;
+    max-width: 70%;
+    padding: 10px;
+  }
+
+  .reply-time,
+  .sender-time {
+    margin-left: 5px;
+    font-size: 10px;
+    color: var(--arrow);
+  }
 }

@@ -1,11 +1,11 @@
 import {useEffect, useState} from 'react';
 import {fetchData} from '../apis';
-import {ResponseData, ChatData, WriterData} from '../types/chat';
+import {ResponseData, ChatData, replyData} from '../types/chat';
 import {set} from 'husky';
 
 const useChatData = () => {
   const [messagesList, setMessagesList] = useState<ChatData[]>([]);
-  const [writerInfo, setWriterInfo] = useState<WriterData>({
+  const [replyInfo, setReplyInfo] = useState<replyData>({
     user_name: '',
     photo_url: '',
   });
@@ -14,7 +14,7 @@ const useChatData = () => {
     const data: ResponseData[] = await fetchData();
 
     const messages: ChatData[] = [];
-    let currentWriterInfo: WriterData = {
+    let currentWriterInfo: replyData = {
       user_name: '',
       photo_url: '',
     };
@@ -42,13 +42,13 @@ const useChatData = () => {
       });
 
     setMessagesList(sortData(messages));
-    setWriterInfo(currentWriterInfo);
+    setReplyInfo(currentWriterInfo);
   };
 
   const sortData = (messages: ChatData[]) => {
     return messages.sort((a, b) => {
       if (a.create_at === b.create_at) {
-        return a.id - b.id;
+        return b.id - a.id;
       }
       return new Date(a.create_at).getTime() - new Date(b.create_at).getTime();
     });
@@ -64,15 +64,14 @@ const useChatData = () => {
 
     if (hours > 12) hours -= 12;
 
-    const formattedTime = `${distinguishHour} ${hours}:${minutes < 10 ? '0' : ''}${minutes}`;
-    return formattedTime;
+    return `${distinguishHour} ${hours}:${minutes < 10 ? '0' : ''}${minutes}`;
   };
 
   useEffect(() => {
     getChat();
   }, []);
 
-  return {messagesList, writerInfo, formatTime};
+  return {messagesList, writerInfo: replyInfo, formatTime};
 };
 
 export default useChatData;

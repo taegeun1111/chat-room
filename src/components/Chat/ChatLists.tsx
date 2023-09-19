@@ -10,23 +10,27 @@ const ChatLists = ({messagesList, formatTime}: Props) => {
   return (
     <ul id='chat-lists'>
       {messagesList.map(message => (
-        <li key={message.id}>
+        <>
           {message.user_id === 1 && (
-            <>
-              <div>{formatTime(message.create_at)}</div>
-              <div className='test'>{message.msg}</div>
-            </>
+            <li key={message.id} className='sender-wrapper'>
+              <div className='sender-time'>{formatTime(message.create_at)}</div>
+              <div className='sender-msg'>{message.msg}</div>
+            </li>
           )}
+
           {message.user_id === 2 && (
-            <>
-              <section className={'test'}>
-                <img src={message.photo_url} alt='photo_url' />
-                <div>{message.user_name}</div>
+            <li key={message.id} className='reply-wrapper'>
+              <section className={'reply-info'}>
+                <img src={message.photo_url} alt='photo_url' className='reply-img' />
+                <div className='reply-user-name'>{message.user_name}</div>
               </section>
-              <div>{formatTime(message.create_at)}</div>
-            </>
+              <section className={'reply-text'}>
+                <div className='reply-msg'>{message.msg}</div>
+                <div className='reply-time'>{formatTime(message.create_at)}</div>
+              </section>
+            </li>
           )}
-        </li>
+        </>
       ))}
     </ul>
   );

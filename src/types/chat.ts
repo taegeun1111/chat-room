@@ -19,7 +19,7 @@ export interface ChatData {
   photo_url?: string;
 }
 
-export interface WriterData {
+export interface replyData {
   user_name: string;
   photo_url: string;
 }
