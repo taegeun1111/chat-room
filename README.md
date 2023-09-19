@@ -27,7 +27,7 @@
 ## 📌 프로젝트 실행 방법
 
 ```javascript
-$ git clone [https://github.com/wanted-pre-onboarding-12th-team-5/pre-onboarding-12th-3-5.git](https://github.com/taegeun1111/chat-room.git)
+$ git clone https://github.com/taegeun1111/chat-room.git
 $ npm start
 $ npm install
 ```
