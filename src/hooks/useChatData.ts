@@ -19,20 +19,18 @@ const useChatData = () => {
       user_name: '',
       photo_url: '',
     };
-    const date = '';
 
     data
       .filter(result => result.msg.mtype === 'text')
       .map(result => {
-        if (date !== result.created_at)
-          messages.push({
-            user_id: result.user_id,
-            user_name: result.user_name,
-            create_at: result.created_at,
-            id: result.id,
-            msg: result.msg.content,
-            photo_url: result.photo_url,
-          });
+        messages.push({
+          user_id: result.user_id,
+          user_name: result.user_name,
+          create_at: result.created_at,
+          id: result.id,
+          msg: result.msg.content,
+          photo_url: result.photo_url,
+        });
 
         if (result.user_id === REPLY) {
           if (result.user_name !== currentWriterInfo.user_name) {
@@ -49,7 +47,6 @@ const useChatData = () => {
           alert('작성자 이름 또는 수신 에러가 발생했습니다.');
         }
       });
-    console.log(messages);
     setMessagesList(sortData(messages));
     setReplyInfo(currentWriterInfo);
   };
@@ -65,10 +62,7 @@ const useChatData = () => {
 
     const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 
-    const lastId = messagesList.reduce(
-      (maxId: number, message) => (message.id > maxId ? message.id : maxId),
-      0
-    );
+    const lastId = messagesList.reduce((maxId, message) => Math.max(maxId, message.id), 0);
 
     const newChat = {
       user_id: SEND,
@@ -77,8 +71,7 @@ const useChatData = () => {
       id: lastId + 1,
       msg: debouncedValue,
     };
-    const updatedMessagesList = [...messagesList, newChat];
-    setMessagesList(updatedMessagesList);
+    setMessagesList([...messagesList, newChat]);
   };
 
   const sortData = (messages: ChatData[]) => {

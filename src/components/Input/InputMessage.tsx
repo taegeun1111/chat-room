@@ -7,8 +7,7 @@ interface Props {
 }
 
 const InputMessage = ({addChat}: Props) => {
-  const {inputValue, setInputValue, debouncedValue, validCheck, setValidCheck} =
-    useInputWithDebounce();
+  const {inputValue, setInputValue, debouncedValue, validCheck} = useInputWithDebounce();
   const [clickFlag, setClickFlag] = useState(true);
 
   const inputChatHandler = (e: ChangeEvent<HTMLInputElement>) => {
