@@ -8,9 +8,10 @@ interface Props {
   formatTime: (timeString: string) => string;
   formatDate: (timeString: string) => string;
   formatText: (msg: string) => string[];
+  copyText: (copyText: string) => void;
 }
 
-const ChatLists = ({messagesList, formatTime, formatText, formatDate}: Props) => {
+const ChatLists = ({messagesList, formatTime, formatText, formatDate, copyText}: Props) => {
   const [showModal, setShowModal] = useState(false);
   const [imgUrl, setImgUrl] = useState('');
   const messagesRef = useRef<HTMLUListElement>(null); // 메시지 엘리먼트를 저장
@@ -43,7 +44,7 @@ const ChatLists = ({messagesList, formatTime, formatText, formatDate}: Props) =>
             {message.user_id === SEND && (
               <div className='sender-wrapper'>
                 <div className='sender-time'>{formatTime(message.create_at)}</div>
-                <div className='sender-msg'>
+                <div className='sender-msg' onClick={() => copyText(message.msg)}>
                   {formatText(message.msg).map((lines, index) => (
                     <React.Fragment key={index}>
                       {lines}
@@ -66,7 +67,7 @@ const ChatLists = ({messagesList, formatTime, formatText, formatDate}: Props) =>
                   <div className='reply-user-name'>{message.user_name}</div>
                 </section>
                 <section className={'reply-text'}>
-                  <div className='reply-msg'>
+                  <div className='reply-msg' onClick={() => copyText(message.msg)}>
                     {formatText(message.msg).map((lines, index) => (
                       <React.Fragment key={index}>
                         {lines}

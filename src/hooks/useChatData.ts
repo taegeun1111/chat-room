@@ -114,6 +114,17 @@ const useChatData = () => {
     getChat();
   }, []);
 
+  const copyText = (textToCopy: string) => {
+    navigator.clipboard
+      .writeText(textToCopy)
+      .then(() => {
+        alert('텍스트가 복사되었습니다.');
+      })
+      .catch(error => {
+        console.error('복사 실패:', error);
+      });
+  };
+
   return {
     messagesList,
     writerInfo: replyInfo,
@@ -122,6 +133,7 @@ const useChatData = () => {
     formatDate,
     setMessagesList,
     addChat,
+    copyText,
   };
 };
 
