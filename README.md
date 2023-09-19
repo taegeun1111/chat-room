@@ -2,7 +2,10 @@
 
 - 서버에서 가져온 메세지 데이터를 화면에 출력
 
-### 기술 스택
+### 🌐 배포 링크
+**[배포 링크](https://pre-onboarding-12th-2-15.vercel.app/)**
+
+### ⚒️ 기술 스택
 
 <div>
    <img src="https://img.shields.io/badge/react-61DAFB?style=flat&logo=react&logoColor=white">
@@ -43,8 +46,15 @@ $ npm install
 3. 메세지 클릭시 클립보드 복사
   - `navigator.clipboard`를 이용하여 클립보드로 복사
 4. 전송 버튼 클릭 활성화
-  - `useInputWithDebounce` 커스텀 훅을 만들어 debouncing과 validcheck를 이용하여 length를 검사한 후 다중클릭 방지 함수 설정
+  - `useInputWithDebounce` 커스텀 훅을 만들어 validcheck를 이용하여 length를 검사한 후 버튼 활성화
 
+5. 추가 구현 기능
+  - messagesList이 변경되어 렌더링이 될 때 스크롤이 젤 하단에 위치하도록 설정
+  - input 영역이 autoFocus가 되도록 설정
+  - sass mixin 변수 설정
+  - debouncing을 구현하여 사용자가 입력시 400s후 버튼 활성화
+  - 다중클릭을 방지하기 위해 flag를 설정한 후 데이터를 보내는 동안 버튼 비활성화
+  
 <br />
 
 ## 📋 컨벤션
