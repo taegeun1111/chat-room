@@ -9,30 +9,30 @@ interface Props {
 const InputMessage = ({addChat}: Props) => {
   const {inputValue, setInputValue, debouncedValue, validCheck, setValidCheck} =
     useInputWithDebounce();
-  // const [clickFlag, setClickFlag] = useState(true);
+  const [clickFlag, setClickFlag] = useState(true);
 
   const inputChatHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
 
   const sendChatHandler = () => {
-    if (validCheck) {
-      setValidCheck(false);
+    if (validCheck && clickFlag) {
+      setClickFlag(false);
       addChat(debouncedValue);
       setInputValue('');
       setTimeout(() => {
-        setValidCheck(true);
+        setClickFlag(true);
       }, 1000);
     }
   };
 
   const pressEnterHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' && validCheck) {
-      setValidCheck(false);
+    if (e.key === 'Enter' && validCheck && clickFlag) {
+      setClickFlag(false);
       addChat(debouncedValue);
       setInputValue('');
       setTimeout(() => {
-        setValidCheck(true);
+        setClickFlag(true);
       }, 1000);
     }
   };
@@ -55,7 +55,7 @@ const InputMessage = ({addChat}: Props) => {
         />
 
         <ArrowUpwardIcon
-          className={validCheck ? 'active-input-arrow' : 'inactive-input-arrow'}
+          className={validCheck && clickFlag ? 'active-input-arrow' : 'inactive-input-arrow'}
           onClick={sendChatHandler}
         />
       </section>

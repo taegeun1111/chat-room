@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {ChatData} from '../../types/chat';
 import Modal from './Modal';
 
@@ -12,6 +12,8 @@ interface Props {
 const ChatLists = ({messagesList, formatTime, formatText, formatDate}: Props) => {
   const [showModal, setShowModal] = useState(false);
   const [imgUrl, setImgUrl] = useState('');
+  const messagesRef = useRef<HTMLUListElement>(null); // 메시지 엘리먼트를 저장
+
   const modalHandler = (url: string) => {
     setImgUrl(url);
     setShowModal(true);
@@ -21,10 +23,14 @@ const ChatLists = ({messagesList, formatTime, formatText, formatDate}: Props) =>
     setShowModal(false);
   };
 
+  useEffect(() => {
+    messagesRef.current!.scrollTop = messagesRef.current!.scrollHeight;
+  }, [messagesList]);
+
   return (
     <>
       {showModal && <Modal imgUrl={imgUrl} closeHandler={closeHandler} />}
-      <ul id='chat-lists'>
+      <ul id='chat-lists' ref={messagesRef}>
         {messagesList.map((message, index) => (
           <li key={message.id}>
             {(index === 0 ||
